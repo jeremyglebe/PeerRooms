@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- This specifies what kind of text encoding we're using -->
+        <meta charset="utf-8">
+        <!-- Viewport settings makes sure the game scales right on mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+        <!-- For more meta tags that can make your game work well as a
+            progressive web app or mobile bookmark, see this article:
+            https://blog.ourcade.co/posts/2020/native-like-web-app-for-your-html5-game/
+        -->
+
+        <!-- This is the title of your game, shown in the browser tab -->
+        <title>P5 Game</title>
+        <!-- The style sheet lets us change how document is formatted -->
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        
+        <!-- P5.js is a library for sketching and animation with code -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+        <!-- P5.Play is an extension library for P5.js which adds game-related features -->
+        <script src="https://cdn.jsdelivr.net/gh/jeremyglebe/p5.play@master/lib/p5.play.js"></script>
+        <!-- Libraries for multiplayer - PeerRooms and its dependency peer.js -->
+        <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+        <script src="../PeerRooms.js"></script>
+        <script src="../PeerRoomsUI.js"></script>
+    </head>
+    <body>
+        <!-- This is the main script which runs our sketch/game -->
+        <script src="script.js"></script>
+    </body>
+</html>
