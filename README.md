@@ -30,7 +30,7 @@ PeerRooms also provides access to the following global variables:
 ## Adding UI Elements
 Include an optional pre-built UI for PeerRooms using the following script tag:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/jeremyglebe/PeerRooms@master/PeerRoomsUI.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/jeremyglebe/PeerRooms@487d386bbc594edab235c7a0bbb3fb768da14398/PeerRoomsUI.js" crossorigin="anonymous"></script>
 ```
 
 The UI extension adds the following functions:
