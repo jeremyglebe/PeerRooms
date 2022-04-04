@@ -1,10 +1,7 @@
 function setup() {
     // Create a canvas that covers the full window
     createCanvas(windowWidth, windowHeight);
-    prConnect({
-        host: 'ip_address_here',
-        port: 9000
-    });
+    prConnect();
     prShowMenu();
 }
 

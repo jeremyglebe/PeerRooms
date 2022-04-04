@@ -4,7 +4,7 @@
  * prCreateRoom()
  * prJoinRoom(roomID)
  * prBroadcast(data)
- * prIsBoss(peerID?)
+ * prIsHost(peerID?)
  * 
  * Global event functions to implement in your script
  * prSelfJoined()
@@ -14,12 +14,12 @@
  */
 
 var prSelf = null;
-var prBossID = null;
+var prHostID = null;
 var prOthers = {};
 
 function prConnect(options) {
     prSelf = new Peer(undefined, options);
-    prBossID = null;
+    prHostID = null;
     prOthers = {};
 
     // Handle connections from other peers
@@ -31,7 +31,7 @@ function prConnect(options) {
             prOtherJoined(dataconn);
         }
         // If I am the boss, then I should share the list of peers
-        if (prIsBoss()) {
+        if (prIsHost()) {
             setTimeout(() => {
                 dataconn.send({
                     type: "peer list",
@@ -48,7 +48,7 @@ function prConnect(options) {
 
 function prCreateRoom() {
     // Set yourself as the boss
-    prBossID = prSelf.id;
+    prHostID = prSelf.id;
     // Check if a global callback is defined
     if (typeof prSelfJoined === 'function') {
         prSelfJoined();
@@ -56,18 +56,18 @@ function prCreateRoom() {
 }
 
 function prJoinRoom(roomID) {
-    prBossID = roomID;
-    prOthers[prBossID] = prSelf.connect(roomID);
+    prHostID = roomID;
+    prOthers[prHostID] = prSelf.connect(roomID);
     // Behavior upon successful connection
-    prOthers[prBossID].on('open', function () {
+    prOthers[prHostID].on('open', function () {
         // Check if a global callback is defined
         if (typeof prSelfJoined === 'function') {
             prSelfJoined();
         }
     });
     // When data is received from a peer
-    prOthers[prBossID].on('data', function (data) {
-        _prOnData(prOthers[prBossID], data);
+    prOthers[prHostID].on('data', function (data) {
+        _prOnData(prOthers[prHostID], data);
     });
 }
 
@@ -77,13 +77,13 @@ function prBroadcast(data) {
     }
 }
 
-function prIsBoss(peerID) {
+function prIsHost(peerID) {
     const id = peerID || prSelf.id;
-    return id == prBossID;
+    return id == prHostID;
 }
 
 function _prOnData(dataconn, data) {
-    if (data.type == "peer list" && prIsBoss(dataconn.peer)) {
+    if (data.type == "peer list" && prIsHost(dataconn.peer)) {
         for (let peer of data.peers) {
             if (peer != prSelf.id)
                 prOthers[peer] = prSelf.connect(peer);
