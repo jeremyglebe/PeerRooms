@@ -6,7 +6,7 @@ This library depends on PeerJS, including it with the following script tag added
 ## Including PeerRooms
 Include PeerRooms in your project using the following script tag:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/jeremyglebe/PeerRooms@master/PeerRooms.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/jeremyglebe/PeerRooms@f79348facdf8d57c6279ffd683bad8c10e2aaa04/PeerRooms.js" crossorigin="anonymous"></script>
 ```
 
 PeerRooms adds the following functions which you can use to interact with rooms:
@@ -30,7 +30,7 @@ PeerRooms also provides access to the following global variables:
 ## Adding UI Elements
 Include an optional pre-built UI for PeerRooms using the following script tag:
 ```html
-<script src="https://cdn.jsdelivr.net/gh/jeremyglebe/PeerRooms@master/PeerRoomsUI.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/jeremyglebe/PeerRooms@487d386bbc594edab235c7a0bbb3fb768da14398/PeerRoomsUI.js" crossorigin="anonymous"></script>
 ```
 
 The UI extension adds the following functions:
