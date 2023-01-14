@@ -25,7 +25,7 @@ function prHideMenu() {
 }
 
 function _prMenuScreenID() {
-    _prMenuPrompt.textContent = `My Room ID: ${prBossID}`;
+    _prMenuPrompt.textContent = `My Room ID: ${prHostID}`;
     _prMenu.removeChild(_prMenuInput);
     _prMenu.removeChild(_prMenuJoinBtn);
     _prMenu.removeChild(_prMenuCreateBtn);

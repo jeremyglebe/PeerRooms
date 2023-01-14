@@ -26,6 +26,8 @@ function prConnect(options) {
     prSelf.on('connection', function (dataconn) {
         // Add the new peer to others
         prOthers[dataconn.peer] = dataconn;
+        setTimeout(()=>{
+        }, 1000);
         // If a callback is defined globally, run it
         if (typeof prOtherJoined === 'function') {
             prOtherJoined(dataconn);
@@ -37,7 +39,7 @@ function prConnect(options) {
                     type: "peer list",
                     peers: Object.keys(prOthers)
                 });
-            }, 20);
+            }, 1000);
         }
         // When data is received from a peer
         dataconn.on('data', function (data) {
@@ -85,8 +87,12 @@ function prIsHost(peerID) {
 function _prOnData(dataconn, data) {
     if (data.type == "peer list" && prIsHost(dataconn.peer)) {
         for (let peer of data.peers) {
-            if (peer != prSelf.id)
+            if (peer != prSelf.id){
                 prOthers[peer] = prSelf.connect(peer);
+                prOthers[peer].on('data', function (data) {
+                    _prOnData(prOthers[peer], data);
+                });
+            }
         }
         if (typeof prPeerListReceived === 'function') {
             prPeerListReceived(Object.keys(prOthers));
